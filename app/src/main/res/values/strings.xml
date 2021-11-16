@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ComposeGBMobile</string>
+    <string name="home_catalog">Каталог</string>
 </resources>
