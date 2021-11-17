@@ -91,6 +91,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
 
     implementation(libs.google.material)
+    implementation(libs.google.accompanist.insets)
 
     implementation(libs.bundles.androidx.compose)
     implementation(libs.bundles.androidx.lifecycle)
