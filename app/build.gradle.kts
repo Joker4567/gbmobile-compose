@@ -89,21 +89,11 @@ dependencies {
 
     implementation(libs.androidx.core)
     implementation(libs.androidx.appcompat)
+
     implementation(libs.google.material)
-    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.bundles.androidx.compose)
-    implementation(libs.google.accompanist.insets)
-
     implementation(libs.bundles.androidx.lifecycle)
 
-    testImplementation(libs.junit4)
-
-    androidTestImplementation(libs.androidx.test.ext)
-    androidTestImplementation(libs.bundles.androidx.test.espresso)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-
-    debugImplementation(libs.androidx.compose.ui.tooling)
-
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
 }

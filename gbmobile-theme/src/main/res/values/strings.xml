@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_catalog">Каталог</string>
+    <string name="home_search">Поиск</string>
+    <string name="home_cart">Карточка игры</string>
+    <string name="home_profile">Профиль</string>
+</resources>

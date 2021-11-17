@@ -40,6 +40,15 @@ dependencies {
     implementation(project(":gbmobile-api"))
 
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.uiUtil)
+
     implementation(libs.bundles.androidx.compose)
+
     implementation(libs.google.material)
+    implementation(libs.google.accompanist.insets)
+
+    implementation(libs.coil.compose)
+
+    implementation(libs.commons.codec)
 }

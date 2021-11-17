@@ -98,6 +98,8 @@ google-accompanist-systemuicontroller = { module = "com.google.accompanist:accom
 google-accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "google-accompanist" }
 google-accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "google-accompanist" }
 
+commons-codec = { module = "commons-codec:commons-codec", version = "1.15" }
+
 [bundles]
 androidx-compose = [
     "androidx-compose-ui",

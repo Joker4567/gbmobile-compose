@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.google.accompanist.flowlayout)
     implementation(libs.androidx.paging.compose)
     implementation(libs.androidx.paging.common)
+    implementation(libs.androidx.constraintlayout.compose)
 
     debugImplementation(libs.androidx.compose.ui.tooling)
 
