@@ -22,7 +22,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import pro.enaza.gb.shared_model.local.GameCard
 import pro.enaza.gb.shared_model.local.TypeDownload
-import pro.enaza.gb.gbmobile_theme.DevToTheme
+import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.shared_ui.component.Circle
 import pro.enaza.gb.shared_ui.component.StateButton
 import pro.enaza.gb.gbmobile_theme.theme.Black700

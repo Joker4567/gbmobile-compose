@@ -1,7 +1,6 @@
 package pro.enaza.gb.gbmobile_theme.main
 
 import android.content.res.Resources
-import android.os.Bundle
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
@@ -14,8 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import pro.enaza.gb.gbmobile_theme.main.MainDestinations.GAME_CARD
-import pro.enaza.gb.gbmobile_theme.main.MainDestinations.HOME_ROUTE
+import pro.enaza.gb.shared_model.local.CatalogCategory
 import pro.enaza.gb.shared_model.local.GameCard
 
 /**
@@ -23,8 +21,10 @@ import pro.enaza.gb.shared_model.local.GameCard
  */
 object MainDestinations {
     const val HOME_ROUTE = "home"
-    const val SNACK_DETAIL_ROUTE = "snack"
+    const val GAME_CARD_DETAIL_ROUTE = "cardRoute"
     const val GAME_CARD = "gameCard"
+    const val SUB_CATALOG_ROUTE = "subCatalog"
+    const val CATALOG_GAME = "catalogGame"
 }
 
 /**
@@ -89,11 +89,18 @@ class GbAppState(
         }
     }
 
-    fun navigateToSnackDetail(game: GameCard, from: NavBackStackEntry) {
+    fun navigateToGameCard(game: GameCard, from: NavBackStackEntry) {
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
             val json = Json.encodeToString(game)
-            navController.navigate("${MainDestinations.SNACK_DETAIL_ROUTE}/$json")
+            navController.navigate("${MainDestinations.GAME_CARD_DETAIL_ROUTE}/$json")
+        }
+    }
+
+    fun navigateToSubCatalog(gameCardList: CatalogCategory, from: NavBackStackEntry){
+        if (from.lifecycleIsResumed()) {
+            val json = Json.encodeToString(gameCardList)
+            navController.navigate("${MainDestinations.SUB_CATALOG_ROUTE}/$json")
         }
     }
 }

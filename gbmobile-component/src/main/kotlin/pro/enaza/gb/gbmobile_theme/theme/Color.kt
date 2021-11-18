@@ -19,3 +19,5 @@ val brand = Color(0xffbbfdfd)
 
 val blue = Color(0xFF0064FF)
 val error = Color(0xFFE0246B)
+
+val lightBlue = Color(0xFF349EFF)

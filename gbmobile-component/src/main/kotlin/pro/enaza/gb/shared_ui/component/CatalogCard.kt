@@ -19,14 +19,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import pro.enaza.gb.shared_model.local.GameCard
-import pro.enaza.gb.shared_model.local.TypeDownload
-import pro.enaza.gb.gbmobile_theme.*
+import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.gbmobile_theme.theme.textHelp
 import pro.enaza.gb.gbmobile_theme.theme.uiBackground
+import pro.enaza.gb.shared_model.local.GameCard
+import pro.enaza.gb.shared_model.local.TypeDownload
 
 @Composable
-fun Cart(
+fun CatalogCard(
         onCardClick: (GameCard) -> Unit,
         cardList: List<GameCard>,
         modifier: Modifier = Modifier
@@ -43,15 +43,15 @@ fun Cart(
 }
 
 @Composable
-private fun CartContent(
+internal fun CartContent(
         cardList: List<GameCard>,
         onCardClick: (GameCard) -> Unit,
         modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier) {
-        items(cardList) { gameCardDto ->
+        items(cardList) { gameCard ->
             CartItem(
-                    card = gameCardDto,
+                    card = gameCard,
                     onCardClick = onCardClick
             )
         }
@@ -59,7 +59,7 @@ private fun CartContent(
 }
 
 @Composable
-private fun CartItem(
+internal fun CartItem(
         card: GameCard,
         onCardClick: (GameCard) -> Unit,
         modifier: Modifier = Modifier

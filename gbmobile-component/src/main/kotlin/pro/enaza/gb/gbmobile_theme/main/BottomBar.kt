@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.core.os.ConfigurationCompat
 import com.google.accompanist.insets.navigationBarsPadding
-import pro.enaza.gb.gbmobile_theme.DevToTheme
+import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.gbmobile_theme.theme.Black700
 import pro.enaza.gb.gbmobile_theme.theme.Black900
 import pro.enaza.gb.shared_ui.component.GbSurface

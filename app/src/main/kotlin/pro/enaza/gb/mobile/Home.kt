@@ -13,11 +13,13 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import pro.enaza.gb.feature_card.CardDialog
 import pro.enaza.gb.feature_catalog.CatalogScreen
-import pro.enaza.gb.gbmobile_theme.DevToTheme
+import pro.enaza.gb.feature_subcatalog.SubCatalogScreen
+import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.gbmobile_theme.main.BottomBar
 import pro.enaza.gb.gbmobile_theme.main.HomeSections
 import pro.enaza.gb.gbmobile_theme.main.MainDestinations
 import pro.enaza.gb.gbmobile_theme.main.rememberAppState
+import pro.enaza.gb.shared_model.local.CatalogCategory
 import pro.enaza.gb.shared_model.local.GameCard
 import pro.enaza.gb.shared_ui.component.GbScaffold
 import pro.enaza.gb.shared_ui.component.Snackbar
@@ -52,8 +54,9 @@ fun GbApp() {
                         modifier = Modifier.padding(innerPaddingModifier)
                 ) {
                     navGraph(
-                            onCardSelected = appState::navigateToSnackDetail,
-                            upPress = appState::upPress
+                            onCardSelected = appState::navigateToGameCard,
+                            upPress = appState::upPress,
+                            onSubCatalogSelected = appState::navigateToSubCatalog
                     )
                 }
             }
@@ -63,16 +66,17 @@ fun GbApp() {
 
 fun NavGraphBuilder.navGraph(
         onCardSelected: (GameCard, NavBackStackEntry) -> Unit,
+        onSubCatalogSelected: (CatalogCategory, NavBackStackEntry) -> Unit,
         upPress: () -> Unit
 ) {
     navigation(
             route = MainDestinations.HOME_ROUTE,
             startDestination = HomeSections.CATALOG.route
     ) {
-        addHomeGraph(onCardSelected)
+        addHomeGraph(onCardSelected, onSubCatalogSelected)
     }
     composable(
-            "${MainDestinations.SNACK_DETAIL_ROUTE}/{${MainDestinations.GAME_CARD}}",
+            "${MainDestinations.GAME_CARD_DETAIL_ROUTE}/{${MainDestinations.GAME_CARD}}",
             arguments = listOf(navArgument(MainDestinations.GAME_CARD) { type = NavType.StringType })
     ) { backStackEntry ->
         val arguments = requireNotNull(backStackEntry.arguments)
@@ -80,12 +84,24 @@ fun NavGraphBuilder.navGraph(
             val card = Json.decodeFromString<GameCard>(cardDataString)
             CardDialog(card, upPress, {}, {})
         }
-
+    }
+    composable(
+            "${MainDestinations.SUB_CATALOG_ROUTE}/{${MainDestinations.CATALOG_GAME}}",
+            arguments = listOf(navArgument(MainDestinations.CATALOG_GAME) { type = NavType.StringType })
+    ) { backStackEntry ->
+        val arguments = requireNotNull(backStackEntry.arguments)
+        arguments.getString(MainDestinations.CATALOG_GAME)?.let { cardDataString ->
+            val card = Json.decodeFromString<CatalogCategory>(cardDataString)
+            SubCatalogScreen(onCardClick = { id ->
+                onCardSelected(id, backStackEntry)
+            }, upPress = upPress, categoryName = card.category, gameCardList = card.data)
+        }
     }
 }
 
 fun NavGraphBuilder.addHomeGraph(
         onCardSelected: (GameCard, NavBackStackEntry) -> Unit,
+        onSubCatalogSelected: (CatalogCategory, NavBackStackEntry) -> Unit,
         modifier: Modifier = Modifier
 ) {
     composable(HomeSections.CATALOG.route) { from ->
@@ -93,7 +109,11 @@ fun NavGraphBuilder.addHomeGraph(
                 onCardClick = { id ->
                     onCardSelected(id, from)
                 },
-                modifier = modifier)
+                modifier = modifier,
+                onSubCatalog = { id ->
+                    onSubCatalogSelected(id, from)
+                }
+        )
     }
     composable(HomeSections.PROFILE.route) {
 

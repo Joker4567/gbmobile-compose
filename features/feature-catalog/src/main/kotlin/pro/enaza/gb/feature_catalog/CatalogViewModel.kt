@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
+import pro.enaza.gb.shared_model.local.CatalogCategory
 import pro.enaza.gb.shared_model.local.GameCard
 import pro.enaza.gb.shared_model.mapper.toGameCard
 import javax.inject.Inject
@@ -18,11 +19,11 @@ class CatalogViewModel @Inject internal constructor(
 ) : ViewModel() {
 
     //TODO bad code, подумать над вариантом единоразового получения flow без условий
-    var saveCollect = emptyList<GameCard>()
+    var saveCollect = emptyList<CatalogCategory>()
     var isLoad = false
 
-    fun getProducts(): Flow<List<GameCard>> = flow {
-        val result = repository.get().getProduct().map { it.toGameCard() }
+    fun getProducts(): Flow<List<CatalogCategory>> = flow {
+        val result = repository.get().getProduct()
         if(result.isNotEmpty() && isLoad.not()) {
             isLoad = true
             saveCollect = result

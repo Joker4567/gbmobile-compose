@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
-import pro.enaza.gb.gbmobile_theme.DevToTheme
+import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.gbmobile_theme.R
 
 @Composable
