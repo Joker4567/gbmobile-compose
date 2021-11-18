@@ -27,6 +27,7 @@ import pro.enaza.gb.gbmobile_theme.theme.uiBackground
 
 @Composable
 fun Cart(
+        onCardClick: (GameCard) -> Unit,
         cardList: List<GameCard>,
         modifier: Modifier = Modifier
 ) {
@@ -34,6 +35,7 @@ fun Cart(
         Box {
             CartContent(
                     cardList = cardList,
+                    onCardClick = onCardClick,
                     modifier = Modifier.align(Alignment.TopCenter)
             )
         }
@@ -43,12 +45,14 @@ fun Cart(
 @Composable
 private fun CartContent(
         cardList: List<GameCard>,
+        onCardClick: (GameCard) -> Unit,
         modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier) {
         items(cardList) { gameCardDto ->
             CartItem(
-                    card = gameCardDto
+                    card = gameCardDto,
+                    onCardClick = onCardClick
             )
         }
     }
@@ -57,12 +61,13 @@ private fun CartContent(
 @Composable
 private fun CartItem(
         card: GameCard,
+        onCardClick: (GameCard) -> Unit,
         modifier: Modifier = Modifier
 ) {
     ConstraintLayout(
             modifier = modifier
                     .fillMaxWidth()
-                    .clickable { }
+                    .clickable { onCardClick.invoke(card) }
                     .background(uiBackground)
                     .padding(horizontal = 18.dp)
 
@@ -160,6 +165,8 @@ private fun CardPreview() {
                         "", 12,
                         "Экшен, Стратегия",
                         type = TypeDownload.DELETE),
-                modifier = Modifier.padding(16.dp))
+                modifier = Modifier.padding(16.dp),
+                onCardClick = {}
+        )
     }
 }

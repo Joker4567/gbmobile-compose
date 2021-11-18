@@ -1,5 +1,8 @@
 package pro.enaza.gb.shared_model.local
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class GameCard(
         val id: Long,
         val name: String = "",

@@ -1,19 +1,22 @@
 package pro.enaza.gb.gbmobile_theme.main
 
 import android.content.res.Resources
+import android.os.Bundle
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavDestination
-import androidx.navigation.NavGraph
-import androidx.navigation.NavHostController
+import androidx.navigation.*
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import pro.enaza.gb.gbmobile_theme.main.MainDestinations.GAME_CARD
+import pro.enaza.gb.gbmobile_theme.main.MainDestinations.HOME_ROUTE
+import pro.enaza.gb.shared_model.local.GameCard
 
 /**
  * Destinations used in the [GbApp].
@@ -21,7 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 object MainDestinations {
     const val HOME_ROUTE = "home"
     const val SNACK_DETAIL_ROUTE = "snack"
-    const val SNACK_ID_KEY = "snackId"
+    const val GAME_CARD = "gameCard"
 }
 
 /**
@@ -34,19 +37,19 @@ fun rememberAppState(
         resources: Resources = resources(),
         coroutineScope: CoroutineScope = rememberCoroutineScope()
 ) =
-    remember(scaffoldState, navController, resources, coroutineScope) {
-        JetsnackAppState(scaffoldState, navController, resources, coroutineScope)
-    }
+        remember(scaffoldState, navController, resources, coroutineScope) {
+            GbAppState(scaffoldState, navController, resources, coroutineScope)
+        }
 
 /**
  * Responsible for holding state related to [GbApp] and containing UI-related logic.
  */
 @Stable
-class JetsnackAppState(
-    val scaffoldState: ScaffoldState,
-    val navController: NavHostController,
-    private val resources: Resources,
-    coroutineScope: CoroutineScope
+class GbAppState(
+        val scaffoldState: ScaffoldState,
+        val navController: NavHostController,
+        private val resources: Resources,
+        coroutineScope: CoroutineScope
 ) {
     // ----------------------------------------------------------
     // BottomBar state source of truth
@@ -59,7 +62,7 @@ class JetsnackAppState(
     // Not all routes need to show the bottom bar.
     val shouldShowBottomBar: Boolean
         @Composable get() = navController
-            .currentBackStackEntryAsState().value?.destination?.route in bottomBarRoutes
+                .currentBackStackEntryAsState().value?.destination?.route in bottomBarRoutes
 
     // ----------------------------------------------------------
     // Navigation state source of truth
@@ -86,16 +89,17 @@ class JetsnackAppState(
         }
     }
 
-    fun navigateToSnackDetail(snackId: Long, from: NavBackStackEntry) {
+    fun navigateToSnackDetail(game: GameCard, from: NavBackStackEntry) {
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
-            navController.navigate("${MainDestinations.SNACK_DETAIL_ROUTE}/$snackId")
+            val json = Json.encodeToString(game)
+            navController.navigate("${MainDestinations.SNACK_DETAIL_ROUTE}/$json")
         }
     }
 }
 
 private fun NavBackStackEntry.lifecycleIsResumed() =
-    this.lifecycle.currentState == Lifecycle.State.RESUMED
+        this.lifecycle.currentState == Lifecycle.State.RESUMED
 
 private val NavGraph.startDestination: NavDestination?
     get() = findNode(startDestinationId)

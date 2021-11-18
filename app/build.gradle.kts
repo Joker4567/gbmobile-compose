@@ -6,6 +6,7 @@ plugins {
     id("kotlin-kapt")
     id("io.gitlab.arturbosch.detekt")
     id("dagger.hilt.android.plugin")
+    id("kotlinx-serialization")
 }
 
 kapt {
@@ -83,6 +84,7 @@ android {
 
 dependencies {
     implementation(project(":features:feature-catalog"))
+    implementation(project(":features:feature-card"))
     implementation(project(":gbmobile-component"))
 
     implementation(libs.androidx.core)
@@ -92,6 +94,7 @@ dependencies {
     implementation(libs.google.accompanist.insets)
 
     implementation(libs.bundles.androidx.compose)
+    implementation(libs.bundles.retrofit2)
     implementation(libs.bundles.androidx.lifecycle)
 
     implementation(libs.androidx.navigation.compose)
