@@ -26,5 +26,3 @@ internal fun OkHttpClient.authorizedOkHttClient(): OkHttpClient {
     return OkHttpClient.Builder()
         .build()
 }
-
-private const val API_URL = "https://mobigames.test.enazadev.ru/api/v3/"
