@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
-import pro.enaza.gb.feature_catalog.model.GameCard
-import pro.enaza.gb.feature_catalog.model.toGameCard
+import pro.enaza.gb.shared_model.local.GameCard
+import pro.enaza.gb.shared_model.mapper.toGameCard
 import javax.inject.Inject
 
 @HiltViewModel

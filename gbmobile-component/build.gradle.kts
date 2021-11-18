@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("io.gitlab.arturbosch.detekt")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -14,8 +15,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -27,13 +26,30 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+    }
 }
 
 dependencies {
-    implementation(libs.androidx.core)
     implementation(libs.androidx.appcompat)
-    implementation(libs.google.material)
-
-    implementation(libs.bundles.retrofit2)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.uiUtil)
     implementation(libs.androidx.annotation)
+    implementation(libs.androidx.constraintlayout.compose)
+
+    implementation(libs.bundles.androidx.compose)
+    implementation(libs.bundles.retrofit2)
+
+    implementation(libs.google.material)
+    implementation(libs.google.accompanist.insets)
+
+    implementation(libs.coil.compose)
+
+    implementation(libs.commons.codec)
 }

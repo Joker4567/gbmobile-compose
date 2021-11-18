@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import pro.enaza.gb.gbmobile_api.api.GBMobileApi
+import pro.enaza.gb.gbmobile_api.GBMobileApi
 import javax.inject.Singleton
 
 @Module

@@ -1,11 +1,11 @@
 package pro.enaza.gb.feature_catalog
 
 import android.util.Log
-import pro.enaza.gb.gbmobile_api.api.GBMobileApi
-import pro.enaza.gb.gbmobile_api.api.entity.GameCardDto
-import pro.enaza.gb.gbmobile_api.api.result.isFailure
-import pro.enaza.gb.gbmobile_api.api.result.isSuccess
-import pro.enaza.gb.gbmobile_api.api.service.CatalogService
+import pro.enaza.gb.gbmobile_api.GBMobileApi
+import pro.enaza.gb.gbmobile_api.result.isFailure
+import pro.enaza.gb.gbmobile_api.result.isSuccess
+import pro.enaza.gb.gbmobile_api.service.CatalogService
+import pro.enaza.gb.shared_model.network.GameCardDto
 import javax.inject.Inject
 
 class CatalogRepository(

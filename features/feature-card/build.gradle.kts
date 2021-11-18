@@ -53,6 +53,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":gbmobile-component"))
 
+
     implementation(libs.androidx.core)
     implementation(libs.androidx.appcompat)
     implementation(libs.bundles.kotlinx.coroutines)

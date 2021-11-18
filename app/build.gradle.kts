@@ -82,10 +82,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":gbmobile-api"))
     implementation(project(":features:feature-catalog"))
-    implementation(project(":gbmobile-theme"))
+    implementation(project(":gbmobile-component"))
 
     implementation(libs.androidx.core)
     implementation(libs.androidx.appcompat)

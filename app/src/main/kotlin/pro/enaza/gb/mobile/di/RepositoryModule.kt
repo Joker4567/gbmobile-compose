@@ -5,7 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import pro.enaza.gb.feature_catalog.CatalogRepository
-import pro.enaza.gb.gbmobile_api.api.service.CatalogService
+import pro.enaza.gb.gbmobile_api.service.CatalogService
 
 @Module
 @InstallIn(ViewModelComponent::class)

@@ -11,15 +11,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.systemBarsPadding
-import pro.enaza.gb.dialog.FullScreenDialog
 import pro.enaza.gb.feature_catalog.CatalogScreen
 import pro.enaza.gb.gbmobile_theme.DevToTheme
-import pro.enaza.gb.gbmobile_theme.component.GbScaffold
-import pro.enaza.gb.gbmobile_theme.component.Snackbar
+import pro.enaza.gb.gbmobile_theme.main.BottomBar
 import pro.enaza.gb.gbmobile_theme.main.HomeSections
 import pro.enaza.gb.gbmobile_theme.main.MainDestinations
-import pro.enaza.gb.gbmobile_theme.main.BottomBar
 import pro.enaza.gb.gbmobile_theme.main.rememberAppState
+import pro.enaza.gb.shared_ui.component.GbScaffold
+import pro.enaza.gb.shared_ui.component.Snackbar
 
 @Composable
 fun GbApp() {
@@ -80,9 +79,7 @@ fun NavGraphBuilder.addHomeGraph(
         CatalogScreen()
     }
     composable(HomeSections.PROFILE.route) {
-        FullScreenDialog(showDialog = true) {
 
-        }
     }
     composable(HomeSections.SEARCH.route) { from ->
 

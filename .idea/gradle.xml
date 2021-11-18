@@ -13,9 +13,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/feature-card" />
             <option value="$PROJECT_DIR$/features/feature-catalog" />
-            <option value="$PROJECT_DIR$/gbmobile-api" />
-            <option value="$PROJECT_DIR$/gbmobile-theme" />
+            <option value="$PROJECT_DIR$/gbmobile-component" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
