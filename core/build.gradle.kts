@@ -36,4 +36,7 @@ dependencies {
 
     implementation(libs.bundles.retrofit2)
     implementation(libs.androidx.annotation)
+
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 }

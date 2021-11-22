@@ -1,9 +1,9 @@
 package pro.enaza.gb.feature_catalog
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.flow.onEach
 import pro.enaza.gb.shared_model.local.CatalogCategory
 import pro.enaza.gb.shared_model.local.GameCard
 import pro.enaza.gb.shared_ui.component.CatalogCategoryCard
@@ -16,14 +16,16 @@ fun CatalogScreen(
         modifier: Modifier = Modifier,
         viewModel: CatalogViewModel = hiltViewModel()
 ) {
-    val collect = viewModel.getProducts().collectAsState(emptyList())
-    if(collect.value.isNotEmpty() && viewModel.isLoad)
+    val state = viewModel.viewState.value
+
+    if (state.isLoading)
+        ScreenProgress()
+    else {
         CatalogCategoryCard(
                 onCardClick = onCardClick,
-                catalogList = collect.value,
+                catalogList = state.gameCards,
                 modifier = modifier,
                 onSubCatalog = onSubCatalog
         )
-    else if(viewModel.isLoad.not())
-        ScreenProgress()
+    }
 }

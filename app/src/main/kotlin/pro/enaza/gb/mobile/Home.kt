@@ -13,6 +13,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import pro.enaza.gb.feature_card.CardDialog
 import pro.enaza.gb.feature_catalog.CatalogScreen
+import pro.enaza.gb.feature_catalog.CatalogViewModel
 import pro.enaza.gb.feature_subcatalog.SubCatalogScreen
 import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.gbmobile_theme.main.BottomBar
