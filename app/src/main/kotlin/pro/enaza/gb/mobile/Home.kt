@@ -13,13 +13,13 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import pro.enaza.gb.feature_card.CardDialog
 import pro.enaza.gb.feature_catalog.CatalogScreen
-import pro.enaza.gb.feature_catalog.CatalogViewModel
+import pro.enaza.gb.feature_search.SearchScreen
 import pro.enaza.gb.feature_subcatalog.SubCatalogScreen
-import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.gbmobile_theme.main.BottomBar
 import pro.enaza.gb.gbmobile_theme.main.HomeSections
 import pro.enaza.gb.gbmobile_theme.main.MainDestinations
 import pro.enaza.gb.gbmobile_theme.main.rememberAppState
+import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.shared_model.local.CatalogCategory
 import pro.enaza.gb.shared_model.local.GameCard
 import pro.enaza.gb.shared_ui.component.GbScaffold
@@ -120,6 +120,10 @@ fun NavGraphBuilder.addHomeGraph(
 
     }
     composable(HomeSections.SEARCH.route) { from ->
-
+        SearchScreen(
+                onCardClick = { id ->
+                    onCardSelected(id, from)
+                }
+        )
     }
 }

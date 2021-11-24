@@ -85,6 +85,7 @@ android {
 dependencies {
     implementation(project(":features:feature-catalog"))
     implementation(project(":features:feature-card"))
+    implementation(project(":features:feature-search"))
     implementation(project(":gbmobile-component"))
 
     implementation(libs.androidx.core)
