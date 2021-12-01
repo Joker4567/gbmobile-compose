@@ -20,9 +20,8 @@ fun SearchScreen(
 
     SearchContent(
             scaffoldState = scaffoldState,
-            login = searchInput,
-            onLoginChange = { searchInput = it },
-            onClear = { searchInput = "" },
+            query = searchInput,
+            onQueryChange = { searchInput = it },
             gameCardList = emptyList(),
             onCardClick = onCardClick
     )
@@ -32,9 +31,8 @@ fun SearchScreen(
 @Composable
 private fun SearchContentPreview() {
     SearchContent(
-            login = "",
-            onLoginChange = {},
-            onClear = {},
+            query = "",
+            onQueryChange = {},
             gameCardList = listOf(GameCard(
                     1,
                     "Название игры",

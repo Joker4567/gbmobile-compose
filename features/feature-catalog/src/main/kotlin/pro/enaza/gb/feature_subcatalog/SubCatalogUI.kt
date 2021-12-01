@@ -1,10 +1,12 @@
 package pro.enaza.gb.feature_subcatalog
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.accompanist.insets.statusBarsPadding
 import pro.enaza.gb.gbmobile_theme.theme.DevToTheme
 import pro.enaza.gb.shared_model.local.GameCard
 import pro.enaza.gb.shared_model.local.TypeDownload
@@ -21,6 +23,7 @@ fun SubCatalogScreen(
         gameCardList: List<GameCard>
 ) {
     Column(Modifier.fillMaxSize()) {
+        Spacer(modifier = Modifier.statusBarsPadding())
         TopBar(categoryName, upPress)
         CatalogCard(
                 onCardClick = onCardClick,
