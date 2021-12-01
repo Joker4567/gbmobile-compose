@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import pro.enaza.gb.core.base.BaseViewModel
+import pro.enaza.gb.gbmobile_api.repository.CatalogRepository
 import javax.inject.Inject
 
 @HiltViewModel

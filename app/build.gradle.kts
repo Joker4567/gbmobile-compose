@@ -98,5 +98,7 @@ dependencies {
     implementation(libs.bundles.retrofit2)
     implementation(libs.bundles.androidx.lifecycle)
 
+    implementation(libs.androidx.room.runtine)
+
     implementation(libs.androidx.navigation.compose)
 }

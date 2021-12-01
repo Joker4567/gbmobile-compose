@@ -3,6 +3,18 @@ plugins {
     id("kotlin-android")
     id("io.gitlab.arturbosch.detekt")
     id("kotlinx-serialization")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+}
+
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
+}
+
+dependencies {
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
 }
 
 android {
@@ -50,6 +62,10 @@ dependencies {
     implementation(libs.google.accompanist.insets)
 
     implementation(libs.coil.compose)
+
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtine)
+    kapt(libs.androidx.room.compiler)
 
     implementation(libs.commons.codec)
 }

@@ -19,6 +19,7 @@ androix-paging = "3.0.1"
 androix-paging-compose = "1.0.0-alpha13"
 androidx-navigation = "2.4.0-alpha10"
 androidx-hilt = "1.0.0"
+androidx-room = "2.3.0"
 
 google-material = "1.4.0"
 
@@ -66,6 +67,10 @@ androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-lived
 androidx-lifecycle-livedata-core-ktx = { module = "androidx.lifecycle:lifecycle-livedata-core-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 
+androidx-room-runtine = { module = "androidx.room:room-runtime", version.ref = "androidx-room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
+
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime-ktx", version.ref = "androix-paging" }
 androidx-paging-common = { module = "androidx.paging:paging-common-ktx", version.ref = "androix-paging" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androix-paging-compose" }
@@ -112,6 +117,11 @@ androidx-lifecycle = [
     "androidx-lifecycle-viewmodel-ktx",
     "androidx-lifecycle-livedata-ktx",
     "androidx-lifecycle-livedata-core-ktx",
+]
+androidx-room = [
+    "androidx-room-compiler",
+    "androidx-room-ktx",
+    "androidx-room-runtine"
 ]
 androidx-test-espresso = ["androidx-test-espresso-core"]
 androidx-paging = ["androidx-paging-runtime", "androidx-paging-common", "androidx-paging-compose"]
