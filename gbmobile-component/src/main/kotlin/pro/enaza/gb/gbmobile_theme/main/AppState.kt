@@ -38,7 +38,7 @@ fun rememberAppState(
         coroutineScope: CoroutineScope = rememberCoroutineScope()
 ) =
         remember(scaffoldState, navController, resources, coroutineScope) {
-            GbAppState(scaffoldState, navController, resources, coroutineScope)
+            GbAppState(scaffoldState, navController)
         }
 
 /**
@@ -47,25 +47,22 @@ fun rememberAppState(
 @Stable
 class GbAppState(
         val scaffoldState: ScaffoldState,
-        val navController: NavHostController,
-        private val resources: Resources,
-        coroutineScope: CoroutineScope
+        val navController: NavHostController
 ) {
     // ----------------------------------------------------------
-    // BottomBar state source of truth
+    // Источник состояния BottomBar
     // ----------------------------------------------------------
 
     val bottomBarTabs = HomeSections.values()
     private val bottomBarRoutes = bottomBarTabs.map { it.route }
 
-    // Reading this attribute will cause recompositions when the bottom bar needs shown, or not.
-    // Not all routes need to show the bottom bar.
+    // Атрибут отображения навигационного меню bottomBar
     val shouldShowBottomBar: Boolean
         @Composable get() = navController
                 .currentBackStackEntryAsState().value?.destination?.route in bottomBarRoutes
 
     // ----------------------------------------------------------
-    // Navigation state source of truth
+    // Источник состояния навигации
     // ----------------------------------------------------------
 
     val currentRoute: String?
@@ -80,8 +77,6 @@ class GbAppState(
             navController.navigate(route) {
                 launchSingleTop = true
                 restoreState = true
-                // Pop up backstack to the first destination and save state. This makes going back
-                // to the start destination when pressing back in any other bottom tab.
                 popUpTo(findStartDestination(navController.graph).id) {
                     saveState = true
                 }
@@ -90,18 +85,27 @@ class GbAppState(
     }
 
     fun navigateToGameCard(game: GameCard, from: NavBackStackEntry) {
-        // In order to discard duplicated navigation events, we check the Lifecycle
+        //Проверяем ЖЦ навигации, чтобы избавиться от повторяющихся событий. Ложных нажатий.
         if (from.lifecycleIsResumed()) {
-            val json = Json.encodeToString(game)
-            navController.navigate("${MainDestinations.GAME_CARD_DETAIL_ROUTE}/$json")
+            navigateModel(
+                    route = MainDestinations.GAME_CARD_DETAIL_ROUTE,
+                    model = game
+            )
         }
     }
 
     fun navigateToSubCatalog(gameCardList: CatalogCategory, from: NavBackStackEntry){
         if (from.lifecycleIsResumed()) {
-            val json = Json.encodeToString(gameCardList)
-            navController.navigate("${MainDestinations.SUB_CATALOG_ROUTE}/$json")
+            navigateModel(
+                    route = MainDestinations.SUB_CATALOG_ROUTE,
+                    model = gameCardList
+            )
         }
+    }
+
+    private inline fun <reified T> navigateModel(route: String, model: T) {
+        val json = Json.encodeToString(model)
+        navController.navigate("$route/$json")
     }
 }
 

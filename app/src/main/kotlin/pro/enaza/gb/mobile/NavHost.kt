@@ -1,6 +1,8 @@
 package pro.enaza.gb.mobile
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.*
 import androidx.navigation.compose.composable
 import kotlinx.serialization.decodeFromString
@@ -55,7 +57,7 @@ private fun NavGraphBuilder.addHomeGraph(
         )
     }
     composable(
-            "${MainDestinations.GAME_CARD_DETAIL_ROUTE}/{${MainDestinations.GAME_CARD}}",
+            route = "${MainDestinations.GAME_CARD_DETAIL_ROUTE}/{${MainDestinations.GAME_CARD}}",
             arguments = listOf(navArgument(MainDestinations.GAME_CARD) { type = NavType.StringType })
     ) { backStackEntry ->
         val arguments = requireNotNull(backStackEntry.arguments)
@@ -65,7 +67,7 @@ private fun NavGraphBuilder.addHomeGraph(
         }
     }
     composable(
-            "${MainDestinations.SUB_CATALOG_ROUTE}/{${MainDestinations.CATALOG_GAME}}",
+            route = "${MainDestinations.SUB_CATALOG_ROUTE}/{${MainDestinations.CATALOG_GAME}}",
             arguments = listOf(navArgument(MainDestinations.CATALOG_GAME) { type = NavType.StringType })
     ) { backStackEntry ->
         val arguments = requireNotNull(backStackEntry.arguments)
