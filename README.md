@@ -1,10 +1,10 @@
 # Gamersbase Mobile Lite version
 
 ## Просмотр каталога игр
+<img alt="Catalog view" src="video/catalog.gif" width="300" />
 
-Вся верстка реализована при помощи compose
-
-<img alt="Catalog view" src="/catalog.gif" width="300" />
+## Поиск игр
+<img alt="Search view" src="video/search.gif" width="300" />
 
 ## Technologies
 - [Kotlin](https://kotlinlang.org)
